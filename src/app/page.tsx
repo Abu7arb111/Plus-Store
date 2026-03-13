@@ -3,8 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Smartphone, Shield, Zap, CheckCircle2, ChevronRight,
-  Instagram, Camera, MessageCircle, Star, Lock, Eye, BellOff,
-  Download, ChevronDown, Twitter, PlayCircle
+  Download, ChevronDown, PlayCircle, Star, Lock, Eye, BellOff
 } from 'lucide-react';
 import { useState } from 'react';
 import NativeAppCode from '@/components/NativeAppCode';
@@ -18,8 +17,7 @@ const APPS = [
     id: 1,
     name: 'Instagram++',
     category: 'Social',
-    icon: <Instagram size={28} color="white" />,
-    iconBg: 'linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
+    icon: '/images/apps/instagram_plus_icon_1773430878711.png',
     features: ['View stories secretly', 'Download posts & stories', 'Screenshot chats silently', 'Disable seen receipts'],
     badge: 'Popular',
     badgeColor: '#6366f1',
@@ -29,8 +27,7 @@ const APPS = [
     id: 2,
     name: 'Snapchat++',
     category: 'Social',
-    icon: <Camera size={28} color="black" />,
-    iconBg: 'linear-gradient(135deg, #FFFC00, #f5e800)',
+    icon: '/images/apps/snapchat_plus_icon_1773430963533.png',
     features: ['Open snaps without seen', 'Screenshot without notify', 'Save snaps to camera roll', 'Disable typing indicator'],
     badge: 'Hot 🔥',
     badgeColor: '#ef4444',
@@ -40,8 +37,7 @@ const APPS = [
     id: 3,
     name: 'Movie Plus',
     category: 'Entertainment',
-    icon: <PlayCircle size={28} color="white" />,
-    iconBg: 'linear-gradient(135deg, #E50914, #B20710)',
+    icon: 'https://images.unsplash.com/photo-1594908900066-3f47337549d8?q=80&w=200&h=200&auto=format&fit=crop', // Fallback for 429
     features: ['Cinema Releases', 'No Subscriptions', 'Multi-Language Support', 'Offline Downloads'],
     badge: 'Trending',
     badgeColor: '#ef4444',
@@ -51,8 +47,7 @@ const APPS = [
     id: 4,
     name: 'Twitter (X)++',
     category: 'Social',
-    icon: <Twitter size={28} color="white" />,
-    iconBg: 'linear-gradient(135deg, #111, #333)',
+    icon: 'https://abs.twimg.com/responsive-web/client-web/icon-ios.b1fd6465.png', // Official X Icon High Res
     features: ['Download any video', 'Undo tweet anytime', 'No ads ever', 'Chronological timeline'],
     badge: 'Updated',
     badgeColor: '#6366f1',
@@ -62,8 +57,7 @@ const APPS = [
     id: 5,
     name: 'TikTok++',
     category: 'Entertainment',
-    icon: <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.15 8.15 0 0 0 4.78 1.52V6.78a4.85 4.85 0 0 1-1.01-.09z" /></svg>,
-    iconBg: 'linear-gradient(135deg, #010101, #2d2d2d)',
+    icon: '/images/apps/tiktok_plus_icon_1773430978581.png',
     features: ['Download without watermark', 'Region bypass', 'Background audio play', 'Disable ads'],
     badge: 'Popular',
     badgeColor: '#6366f1',
@@ -73,19 +67,28 @@ const APPS = [
     id: 6,
     name: 'YouTube++',
     category: 'Entertainment',
-    icon: <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>,
-    iconBg: 'linear-gradient(135deg, #FF0000, #cc0000)',
+    icon: '/images/apps/youtube_plus_icon_1773431003669.png',
     features: ['Background play (free)', 'Ad-free experience', 'Download any video/audio', 'Picture-in-picture'],
     badge: 'Most Loved',
     badgeColor: '#ef4444',
     installUrl: '#'
   },
+  {
+    id: 7,
+    name: 'WhatsApp++',
+    category: 'Messaging',
+    icon: '/images/apps/whatsapp_plus_icon_1773431018318.png',
+    features: ['Enter chat without appearing', 'Blue tick control', 'Download statuses & media', 'Hide typing indicator'],
+    badge: 'New',
+    badgeColor: '#06b6d4',
+    installUrl: '#'
+  }
 ];
 
 const MOVIES = [
-  { id: 101, title: 'Dune: Part Two', year: '2024', status: 'In Cinemas', poster: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=200&h=300&auto=format&fit=crop', platform: 'Cinema' },
-  { id: 102, title: 'Kung Fu Panda 4', year: '2024', status: 'In Cinemas', poster: 'https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=200&h=300&auto=format&fit=crop', platform: 'Cinema' },
-  { id: 103, title: 'Poor Things', year: '2023', status: 'Available', poster: 'https://images.unsplash.com/photo-1542204113-e93847e212ef?q=80&w=200&h=300&auto=format&fit=crop', platform: 'Disney+' },
+  { id: 101, title: 'Dune: Part Two', year: '2024', status: 'In Cinemas', poster: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400&h=600&auto=format&fit=crop', platform: 'Cinema' },
+  { id: 102, title: 'Kung Fu Panda 4', year: '2024', status: 'In Cinemas', poster: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400&h=600&auto=format&fit=crop', platform: 'Cinema' },
+  { id: 103, title: 'Avatar: The Way of Water', year: '2022', status: 'Available', poster: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?q=80&w=400&h=600&auto=format&fit=crop', platform: 'Disney+' },
 ];
 
 const FAQS = [
@@ -102,7 +105,7 @@ function AppCard({ app, index, onInstall }: { app: typeof APPS[0]; index: number
     <TiltCard>
       <motion.div
         className="glass-card"
-        style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%' }}
+        style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%', position: 'relative', overflow: 'hidden' }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -110,13 +113,16 @@ function AppCard({ app, index, onInstall }: { app: typeof APPS[0]; index: number
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{
-              width: '52px', height: '52px', borderRadius: '14px',
-              background: app.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
-            }}>
-              {app.icon}
-            </div>
+            <img
+              src={app.icon}
+              alt={app.name}
+              style={{
+                width: '60px', height: '60px', borderRadius: '14px',
+                objectFit: 'cover',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(255,255,255,0.1)'
+              }}
+            />
             <div>
               <p style={{ fontWeight: '700', fontSize: '1rem' }}>{app.name}</p>
               <p style={{ color: '#888', fontSize: '0.75rem' }}>{app.category}</p>
@@ -305,26 +311,26 @@ export default function Home() {
           <p style={{ color: '#888', marginTop: '0.75rem' }}>Free streaming for every platform. Cinema to TV.</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '2rem' }}>
           {MOVIES.map((movie, i) => (
             <TiltCard key={movie.id}>
               <motion.div
                 className="glass-card"
-                style={{ overflow: 'hidden', padding: 0 }}
+                style={{ overflow: 'hidden', padding: 0, height: '100%' }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <div style={{ position: 'relative', paddingTop: '150%' }}>
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '2/3' }}>
                   <img src={movie.poster} alt={movie.title} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.8)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>
+                  <div style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.8)', color: 'white', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '700', backdropFilter: 'blur(4px)' }}>
                     {movie.status}
                   </div>
                 </div>
-                <div style={{ padding: '1rem' }}>
-                  <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '0.25rem' }}>{movie.title}</h4>
-                  <p style={{ fontSize: '0.75rem', color: '#888' }}>{movie.year} • {movie.platform}</p>
+                <div style={{ padding: '1.25rem' }}>
+                  <h4 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.25rem' }}>{movie.title}</h4>
+                  <p style={{ fontSize: '0.8rem', color: '#888' }}>{movie.year} • {movie.platform}</p>
                 </div>
               </motion.div>
             </TiltCard>
