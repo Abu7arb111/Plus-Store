@@ -42,9 +42,14 @@ function SuccessContent() {
                     <Copy size={16} style={{ cursor: 'pointer', color: '#555' }} />
                 </div>
 
-                <button className="premium-button" style={{ width: '100%', padding: '15px' }}>
-                    Install Native Store App
-                </button>
+                <a href="/api/manifest?app=PlusStore" style={{ textDecoration: 'none' }}>
+                    <button className="premium-button" style={{ width: '100%', padding: '16px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', boxShadow: '0 0 30px var(--accent-glow)' }}>
+                        <Smartphone size={24} /> Install Plus Store App
+                    </button>
+                </a>
+                <p style={{ color: '#555', fontSize: '0.8rem', marginTop: '1rem' }}>
+                    Tap install and "Allow" the configuration profile in your iPhone Settings.
+                </p>
             </motion.div>
         </main>
     );

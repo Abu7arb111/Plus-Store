@@ -230,27 +230,27 @@ export default function Home() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 1rem', background: 'var(--glass)', border: '1px solid var(--glass-border)', borderRadius: '100px', fontSize: '0.78rem', marginBottom: '2rem' }}>
             <Zap size={12} color="var(--accent)" />
-            <span style={{ color: '#bbb' }}>The #1 tweaked app store for college students</span>
+            <span style={{ color: '#bbb' }}>The only App Store you'll ever need</span>
           </div>
 
           <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: '900', lineHeight: '1.05', marginBottom: '1.25rem', letterSpacing: '-0.03em' }}>
-            Go Stealth.<br />
-            <span className="gradient-text">Stay Ahead.</span>
+            Get the <span className="gradient-text">Plus Store</span> App.<br />
+            Unleash Your iPhone.
           </h1>
 
-          <p style={{ fontSize: '1.15rem', color: '#999', maxWidth: '560px', margin: '0 auto 2.5rem', lineHeight: '1.7' }}>
-            Access 50+ modified apps with full privacy controls. Watch stories, read snaps, screenshot messages — completely undetected.
+          <p style={{ fontSize: '1.15rem', color: '#999', maxWidth: '600px', margin: '0 auto 2.5rem', lineHeight: '1.7' }}>
+            Install our native app store to access 50+ tweaked apps, premium movies, and advanced privacy tools. No jailbreak. No revokes. Forever.
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="#pricing">
-              <button className="premium-button" style={{ padding: '14px 36px', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Download size={18} /> Get Plus Store
+            <a href="/register-success">
+              <button className="premium-button" style={{ padding: '16px 48px', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.75rem', boxShadow: '0 0 40px var(--accent-glow)' }}>
+                <Download size={20} /> Install Plus Store App
               </button>
             </a>
             <a href="#apps">
-              <button style={{ background: 'transparent', color: 'white', border: '1px solid var(--glass-border)', padding: '14px 36px', borderRadius: '12px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                Browse Apps <ChevronRight size={18} />
+              <button style={{ background: 'transparent', color: 'white', border: '1px solid var(--glass-border)', padding: '16px 48px', borderRadius: '12px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
+                Preview Library <ChevronRight size={18} />
               </button>
             </a>
           </div>
