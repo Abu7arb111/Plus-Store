@@ -7,6 +7,7 @@ import {
   Download, ChevronDown, Twitter
 } from 'lucide-react';
 import { useState } from 'react';
+import NativeAppCode from '@/components/NativeAppCode';
 
 // ─── App Data ───────────────────────────────────────────────────────────────
 const APPS = [
@@ -274,6 +275,8 @@ export default function Home() {
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <p style={{ color: '#888', fontSize: '0.9rem' }}>+ 44 more apps including Telegram++, BeReal++, Discord++ & more</p>
         </div>
+
+        <NativeAppCode />
       </section>
 
       {/* ── Pricing ── */}

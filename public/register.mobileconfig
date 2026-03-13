@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.EN">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<dict>
+		<key>URL</key>
+		<string>https://your-domain.com/api/register-device</string>
+		<key>DeviceAttributes</key>
+		<array>
+			<string>UDID</string>
+			<string>IMEI</string>
+			<string>ICCID</string>
+			<string>VERSION</string>
+			<string>PRODUCT</string>
+		</array>
+	</dict>
+	<key>PayloadDescription</key>
+	<string>This profile will extract your device UDID to register your device for the Plus Store Developer Edition.</string>
+	<key>PayloadDisplayName</key>
+	<string>Plus Store Device Registration</string>
+	<key>PayloadIdentifier</key>
+	<string>com.plusstore.registration</string>
+	<key>PayloadOrganization</key>
+	<string>Plus Store Inc.</string>
+	<key>PayloadType</key>
+	<string>Profile Service</string>
+	<key>PayloadUUID</key>
+	<string>7A2A15B0-DE86-49FA-8E7B-A2A15B0DE860</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
