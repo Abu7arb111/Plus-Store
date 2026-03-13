@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import NativeAppCode from '@/components/NativeAppCode';
+import InstallSimulation from '@/components/InstallSimulation';
 
 // ─── App Data ───────────────────────────────────────────────────────────────
 const APPS = [
@@ -89,7 +90,7 @@ const FAQS = [
 ];
 
 // ─── App Card ────────────────────────────────────────────────────────────────
-function AppCard({ app, index }: { app: typeof APPS[0]; index: number }) {
+function AppCard({ app, index, onInstall }: { app: typeof APPS[0]; index: number; onInstall: (name: string) => void }) {
   return (
     <motion.div
       className="glass-card"
@@ -130,10 +131,14 @@ function AppCard({ app, index }: { app: typeof APPS[0]; index: number }) {
       </ul>
 
       {/* Install Button */}
-      <button className="premium-button" style={{
-        width: '100%', display: 'flex', alignItems: 'center',
-        justifyContent: 'center', gap: '0.5rem', paddingTop: '10px', paddingBottom: '10px'
-      }}>
+      <button
+        onClick={() => onInstall(app.name)}
+        className="premium-button"
+        style={{
+          width: '100%', display: 'flex', alignItems: 'center',
+          justifyContent: 'center', gap: '0.5rem', paddingTop: '10px', paddingBottom: '10px'
+        }}
+      >
         <Download size={16} /> Install Free
       </button>
     </motion.div>
@@ -176,8 +181,19 @@ function FaqItem({ faq, index }: { faq: typeof FAQS[0]; index: number }) {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function Home() {
+  const [simulation, setSimulation] = useState({ isOpen: false, appName: '' });
+
+  const triggerInstall = (appName: string) => {
+    setSimulation({ isOpen: true, appName });
+  };
+
   return (
     <main style={{ minHeight: '100vh', position: 'relative' }}>
+      <InstallSimulation
+        isOpen={simulation.isOpen}
+        appName={simulation.appName}
+        onClose={() => setSimulation({ ...simulation, isOpen: false })}
+      />
       {/* Background Orbs */}
       <div style={{ position: 'fixed', top: '-10%', left: '-10%', width: '40%', height: '40%', background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)', zIndex: -1, borderRadius: '50%', pointerEvents: 'none' }} />
       <div style={{ position: 'fixed', bottom: '-10%', right: '-10%', width: '40%', height: '40%', background: 'radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)', zIndex: -1, borderRadius: '50%', pointerEvents: 'none' }} />
@@ -270,7 +286,7 @@ export default function Home() {
           <p style={{ color: '#888', marginTop: '0.75rem' }}>All modified, all encrypted, all yours for a year.</p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
-          {APPS.map((app, i) => <AppCard key={app.id} app={app} index={i} />)}
+          {APPS.map((app, i) => <AppCard key={app.id} app={app} index={i} onInstall={triggerInstall} />)}
         </div>
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <p style={{ color: '#888', fontSize: '0.9rem' }}>+ 44 more apps including Telegram++, BeReal++, Discord++ & more</p>
