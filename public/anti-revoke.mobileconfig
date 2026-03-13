@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.EN">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadIdentifier</key>
+            <string>com.plusstore.antirevoke</string>
+            <key>PayloadUUID</key>
+            <string>E73AC217-4F63-47C0-85A3-B753C4D58D6E</string>
+            <key>PayloadDisplayName</key>
+            <string>Plus Store Anti-Revoke DNS</string>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://dns.adguard-dns.com/dns-query</string>
+                <key>ServerAddresses</key>
+                <array>
+                    <string>94.140.14.14</string>
+                    <string>94.140.15.15</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Plus Store Anti-Revoke Profile</string>
+    <key>PayloadIdentifier</key>
+    <string>com.plusstore.profile.antirevoke</string>
+    <key>PayloadOrganization</key>
+    <string>Plus Store Developer</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>B6D7E3A6-C2C2-4E4D-9A9B-1B2C3D4E5F6G</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>

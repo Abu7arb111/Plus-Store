@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Smartphone, Shield, Zap, CheckCircle2, ChevronRight,
   Instagram, Camera, MessageCircle, Star, Lock, Eye, BellOff,
-  Download, ChevronDown, Twitter
+  Download, ChevronDown, Twitter, PlayCircle
 } from 'lucide-react';
 import { useState } from 'react';
 import NativeAppCode from '@/components/NativeAppCode';
 import InstallSimulation from '@/components/InstallSimulation';
+import ThreeBackground from '@/components/ThreeBackground';
+import TiltCard from '@/components/TiltCard';
 
 // ─── App Data ───────────────────────────────────────────────────────────────
 const APPS = [
@@ -36,13 +38,13 @@ const APPS = [
   },
   {
     id: 3,
-    name: 'WhatsApp++',
-    category: 'Messaging',
-    icon: <MessageCircle size={28} color="white" />,
-    iconBg: 'linear-gradient(135deg, #25D366, #128C7E)',
-    features: ['Enter chat without appearing', 'Blue tick control', 'Download statuses & media', 'Hide typing indicator'],
-    badge: 'New',
-    badgeColor: '#06b6d4',
+    name: 'Movie Plus',
+    category: 'Entertainment',
+    icon: <PlayCircle size={28} color="white" />,
+    iconBg: 'linear-gradient(135deg, #E50914, #B20710)',
+    features: ['Cinema Releases', 'No Subscriptions', 'Multi-Language Support', 'Offline Downloads'],
+    badge: 'Trending',
+    badgeColor: '#ef4444',
     installUrl: '#'
   },
   {
@@ -80,7 +82,12 @@ const APPS = [
   },
 ];
 
-// ─── FAQ Data ────────────────────────────────────────────────────────────────
+const MOVIES = [
+  { id: 101, title: 'Dune: Part Two', year: '2024', status: 'In Cinemas', poster: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=200&h=300&auto=format&fit=crop', platform: 'Cinema' },
+  { id: 102, title: 'Kung Fu Panda 4', year: '2024', status: 'In Cinemas', poster: 'https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=200&h=300&auto=format&fit=crop', platform: 'Cinema' },
+  { id: 103, title: 'Poor Things', year: '2023', status: 'Available', poster: 'https://images.unsplash.com/photo-1542204113-e93847e212ef?q=80&w=200&h=300&auto=format&fit=crop', platform: 'Disney+' },
+];
+
 const FAQS = [
   { q: 'Do I need to jailbreak my iPhone?', a: 'No! Plus Store uses an enterprise certificate method to install apps. No jailbreak required — your warranty stays intact and your device remains fully secure.' },
   { q: 'How does the stealth mode work?', a: 'Our modified apps inject custom code that intercepts read receipts, screenshot notifications, and story views at the app layer, so the servers never register your action.' },
@@ -92,56 +99,56 @@ const FAQS = [
 // ─── App Card ────────────────────────────────────────────────────────────────
 function AppCard({ app, index, onInstall }: { app: typeof APPS[0]; index: number; onInstall: (name: string) => void }) {
   return (
-    <motion.div
-      className="glass-card"
-      style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      {/* App Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{
-            width: '52px', height: '52px', borderRadius: '14px',
-            background: app.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
-          }}>
-            {app.icon}
-          </div>
-          <div>
-            <p style={{ fontWeight: '700', fontSize: '1rem' }}>{app.name}</p>
-            <p style={{ color: '#888', fontSize: '0.75rem' }}>{app.category}</p>
-          </div>
-        </div>
-        <span style={{
-          background: app.badgeColor, color: 'white',
-          padding: '3px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: '600'
-        }}>{app.badge}</span>
-      </div>
-
-      {/* Features */}
-      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-        {app.features.map((f, i) => (
-          <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#bbb', fontSize: '0.85rem' }}>
-            <CheckCircle2 size={14} color="#6366f1" /> {f}
-          </li>
-        ))}
-      </ul>
-
-      {/* Install Button */}
-      <button
-        onClick={() => onInstall(app.name)}
-        className="premium-button"
-        style={{
-          width: '100%', display: 'flex', alignItems: 'center',
-          justifyContent: 'center', gap: '0.5rem', paddingTop: '10px', paddingBottom: '10px'
-        }}
+    <TiltCard>
+      <motion.div
+        className="glass-card"
+        style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%' }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
       >
-        <Download size={16} /> Install Free
-      </button>
-    </motion.div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{
+              width: '52px', height: '52px', borderRadius: '14px',
+              background: app.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
+            }}>
+              {app.icon}
+            </div>
+            <div>
+              <p style={{ fontWeight: '700', fontSize: '1rem' }}>{app.name}</p>
+              <p style={{ color: '#888', fontSize: '0.75rem' }}>{app.category}</p>
+            </div>
+          </div>
+          <span style={{
+            background: app.badgeColor, color: 'white',
+            padding: '3px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: '600'
+          }}>{app.badge}</span>
+        </div>
+
+        <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+          {app.features.map((f, i) => (
+            <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#bbb', fontSize: '0.85rem' }}>
+              <CheckCircle2 size={14} color="#6366f1" /> {f}
+            </li>
+          ))}
+        </ul>
+
+        <button
+          onClick={() => onInstall(app.name)}
+          className="premium-button"
+          style={{
+            width: '100%', display: 'flex', alignItems: 'center',
+            justifyContent: 'center', gap: '0.5rem', paddingTop: '10px', paddingBottom: '10px',
+            marginTop: 'auto'
+          }}
+        >
+          <Download size={16} /> Install Free
+        </button>
+      </motion.div>
+    </TiltCard>
   );
 }
 
@@ -188,16 +195,13 @@ export default function Home() {
   };
 
   return (
-    <main style={{ minHeight: '100vh', position: 'relative' }}>
+    <main style={{ minHeight: '100vh', position: 'relative', overflowX: 'hidden' }}>
+      <ThreeBackground />
       <InstallSimulation
         isOpen={simulation.isOpen}
         appName={simulation.appName}
         onClose={() => setSimulation({ ...simulation, isOpen: false })}
       />
-      {/* Background Orbs */}
-      <div style={{ position: 'fixed', top: '-10%', left: '-10%', width: '40%', height: '40%', background: 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)', zIndex: -1, borderRadius: '50%', pointerEvents: 'none' }} />
-      <div style={{ position: 'fixed', bottom: '-10%', right: '-10%', width: '40%', height: '40%', background: 'radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)', zIndex: -1, borderRadius: '50%', pointerEvents: 'none' }} />
-      <div style={{ position: 'fixed', top: '40%', left: '50%', transform: 'translateX(-50%)', width: '30%', height: '30%', background: 'radial-gradient(circle, rgba(236,72,153,0.05) 0%, transparent 70%)', zIndex: -1, borderRadius: '50%', pointerEvents: 'none' }} />
 
       {/* ── Navigation ── */}
       <nav style={{ padding: '1.25rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', position: 'sticky', top: 0, backdropFilter: 'blur(12px)', zIndex: 100 }}>
@@ -209,8 +213,8 @@ export default function Home() {
         </div>
         <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
           <a href="#apps" style={{ color: '#aaa', textDecoration: 'none', fontSize: '0.9rem' }}>Apps</a>
+          <a href="#movies" style={{ color: '#aaa', textDecoration: 'none', fontSize: '0.9rem' }}>Movies</a>
           <a href="#pricing" style={{ color: '#aaa', textDecoration: 'none', fontSize: '0.9rem' }}>Pricing</a>
-          <a href="#faq" style={{ color: '#aaa', textDecoration: 'none', fontSize: '0.9rem' }}>FAQ</a>
           <button className="premium-button" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>Get Started</button>
         </div>
       </nav>
@@ -245,7 +249,6 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Social Proof */}
           <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', marginTop: '3.5rem', flexWrap: 'wrap' }}>
             {[['50+', 'Tweaked Apps'], ['10K+', 'Active Users'], ['99%', 'Uptime SLA'], ['24/7', 'Support']].map(([num, label]) => (
               <div key={label} style={{ textAlign: 'center' }}>
@@ -257,7 +260,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ── What you get ── */}
+      {/* ── Feature Cards ── */}
       <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
           {[
@@ -266,12 +269,14 @@ export default function Home() {
             { icon: <BellOff size={26} color="#ec4899" />, title: 'Screenshot Guard', desc: 'Take screenshots of any chat or story without triggering a single notification to the sender.' },
             { icon: <Smartphone size={26} color="#a855f7" />, title: 'No Jailbreak', desc: 'Installed via a one-tap enterprise certificate. No jailbreak, no risk, no tech skills needed.' },
           ].map((item, i) => (
-            <motion.div key={i} className="glass-card" style={{ padding: '1.75rem' }}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <div style={{ marginBottom: '1rem' }}>{item.icon}</div>
-              <h3 style={{ fontWeight: '700', marginBottom: '0.5rem', fontSize: '1.05rem' }}>{item.title}</h3>
-              <p style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>{item.desc}</p>
-            </motion.div>
+            <TiltCard key={i}>
+              <motion.div className="glass-card" style={{ padding: '1.75rem', height: '100%' }}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                <div style={{ marginBottom: '1rem' }}>{item.icon}</div>
+                <h3 style={{ fontWeight: '700', marginBottom: '0.5rem', fontSize: '1.05rem' }}>{item.title}</h3>
+                <p style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>{item.desc}</p>
+              </motion.div>
+            </TiltCard>
           ))}
         </div>
       </section>
@@ -288,10 +293,46 @@ export default function Home() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
           {APPS.map((app, i) => <AppCard key={app.id} app={app} index={i} onInstall={triggerInstall} />)}
         </div>
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <p style={{ color: '#888', fontSize: '0.9rem' }}>+ 44 more apps including Telegram++, BeReal++, Discord++ & more</p>
+      </section>
+
+      {/* ── Movie Plus Library ── */}
+      <section id="movies" style={{ padding: '5rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '800', letterSpacing: '-0.02em' }}>
+            Movie <span className="gradient-text">Plus Library</span>
+          </motion.h2>
+          <p style={{ color: '#888', marginTop: '0.75rem' }}>Free streaming for every platform. Cinema to TV.</p>
         </div>
 
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1.5rem' }}>
+          {MOVIES.map((movie, i) => (
+            <TiltCard key={movie.id}>
+              <motion.div
+                className="glass-card"
+                style={{ overflow: 'hidden', padding: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div style={{ position: 'relative', paddingTop: '150%' }}>
+                  <img src={movie.poster} alt={movie.title} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.8)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem' }}>
+                    {movie.status}
+                  </div>
+                </div>
+                <div style={{ padding: '1rem' }}>
+                  <h4 style={{ fontSize: '0.9rem', fontWeight: '700', marginBottom: '0.25rem' }}>{movie.title}</h4>
+                  <p style={{ fontSize: '0.75rem', color: '#888' }}>{movie.year} • {movie.platform}</p>
+                </div>
+              </motion.div>
+            </TiltCard>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ padding: '2rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
         <NativeAppCode />
       </section>
 
@@ -303,7 +344,6 @@ export default function Home() {
         </motion.h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
-          {/* Monthly */}
           <motion.div className="glass-card" style={{ padding: '2.5rem' }}
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0 }}>
             <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: '0.5rem', fontWeight: '600' }}>MONTHLY</p>
@@ -317,7 +357,6 @@ export default function Home() {
             <button className="premium-button" style={{ width: '100%', marginTop: '1.5rem' }}>Choose Monthly</button>
           </motion.div>
 
-          {/* Yearly (highlighted) */}
           <motion.div style={{
             padding: '2.5rem', background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(6,182,212,0.1))',
             border: '1px solid var(--accent)', borderRadius: '20px', position: 'relative', boxShadow: '0 0 30px rgba(99,102,241,0.3)'
